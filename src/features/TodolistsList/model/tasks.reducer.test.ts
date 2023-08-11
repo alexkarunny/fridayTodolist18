@@ -1,6 +1,9 @@
-import { tasksActions, tasksReducer, TasksStateType, tasksThunks } from "features/TodolistsList/tasks.reducer";
-import { TaskPriorities, TaskStatuses, TaskType, UpdateTaskArgType } from "api/todolists-api";
-import { todolistsActions } from "features/TodolistsList/todolists.reducer";
+import { tasksReducer, TasksStateType, tasksThunks } from "features/TodolistsList/model/tasks.reducer";
+
+import { todolistsActions } from "features/TodolistsList/model/todolists.reducer";
+
+import { TaskPriorities, TaskStatuses } from "common/enums";
+import { TaskType, UpdateTaskArgType } from "features/TodolistsList/api/todolists-api-types";
 
 type TestType = {
   type: string;
@@ -113,8 +116,6 @@ test("correct task should be deleted from correct array", () => {
 });
 
 test("correct task should be added to correct array", () => {
-  //const action = addTaskAC("juce", "todolistId2");
-
   const task: TaskType = {
     todoListId: "todolistId2",
     title: "juce",

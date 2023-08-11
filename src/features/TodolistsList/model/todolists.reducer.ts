@@ -1,9 +1,10 @@
-import { todolistsAPI, TodolistType } from "api/todolists-api";
 import { appActions, RequestStatusType } from "app/app.reducer";
-import { handleServerNetworkError } from "utils/handle-server-network-error";
+import { handleServerNetworkError } from "common/utils/handle-server-network-error";
 import { AppThunk } from "app/store";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { clearTasksAndTodolists } from "common/actions/common.actions";
+import { todolistsAPI } from "features/TodolistsList/api/todolists-api";
+import { TodolistType } from "features/TodolistsList/api/todolists-api-types";
 
 const initialState: TodolistDomainType[] = [];
 
@@ -14,7 +15,6 @@ const slice = createSlice({
     removeTodolist: (state, action: PayloadAction<{ id: string }>) => {
       const index = state.findIndex((todo) => todo.id === action.payload.id);
       if (index !== -1) state.splice(index, 1);
-      // return state.filter(tl => tl.id !== action.payload.id)
     },
     addTodolist: (state, action: PayloadAction<{ todolist: TodolistType }>) => {
       const newTodolist: TodolistDomainType = { ...action.payload.todolist, filter: "all", entityStatus: "idle" };
